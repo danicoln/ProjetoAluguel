@@ -5,7 +5,6 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
 
-import br.com.alfamidia.model.Veiculo;
 import br.com.alfamidia.model.Vendedor;
 
 public class VendedorRepository {
@@ -13,7 +12,7 @@ public class VendedorRepository {
 
 	Map<Integer, Vendedor> vendedorBD;
 
-	public VendedorRepository(Map<Integer, Vendedor> veiculoBD) {
+	public VendedorRepository() {
 		this.vendedorBD = new TreeMap<>();
 	}
 	
@@ -21,7 +20,7 @@ public class VendedorRepository {
 		this.vendedorBD.put(vendedor.getId(), vendedor);
 	}
 	
-	public List<Veiculo> buscarTodos(){
+	public List<Vendedor> buscarTodos(){
 		return this.vendedorBD.values().stream().collect(Collectors.toList());
 	}
 	
