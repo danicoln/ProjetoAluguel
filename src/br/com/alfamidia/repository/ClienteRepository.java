@@ -11,22 +11,22 @@ public class ClienteRepository {
 
 	Map<Integer, Cliente> clienteBD;
 
-	public ClienteRepository(Map<Integer, Cliente> clienteBD) {
+	public ClienteRepository() {
 		this.clienteBD = new TreeMap<>();
 	}
-	
-	public void salvar(Cliente cliente){
+
+	public void salvar(Cliente cliente) {
 		this.clienteBD.put(cliente.getId(), cliente);
 	}
-	
-	public List<Cliente> buscarTodos(){
+
+	public List<Cliente> buscarTodos() {
 		return this.clienteBD.values().stream().collect(Collectors.toList());
 	}
-	
+
 	public Cliente buscarPorId(Integer id) {
 		return this.clienteBD.get(id);
 	}
-	
+
 	public void removerPorId(Integer id) {
 		this.clienteBD.remove(id);
 	}
