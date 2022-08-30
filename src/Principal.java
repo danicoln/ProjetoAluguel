@@ -1,7 +1,6 @@
 import java.util.Scanner;
 
 import br.com.alfamidia.menu.Menu;
-import br.com.alfamidia.model.Administrador;
 import br.com.alfamidia.repository.AdministradorRepository;
 import br.com.alfamidia.repository.ClienteRepository;
 import br.com.alfamidia.repository.VeiculoRepository;
