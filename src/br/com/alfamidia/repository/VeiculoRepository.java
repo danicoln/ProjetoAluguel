@@ -11,7 +11,7 @@ public class VeiculoRepository {
 
 	Map<Integer, Veiculo> veiculoBD;
 
-	public VeiculoRepository(Map<Integer, Veiculo> veiculoBD) {
+	public VeiculoRepository() {
 		this.veiculoBD = new TreeMap<>();
 	}
 	
