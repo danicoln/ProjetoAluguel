@@ -12,7 +12,7 @@ public class Menu {
 		System.out.println("0 - Sair");
 	}
 
-	public static void menuCliente() {
+	public static void menu2() {
 		System.out.println("Digite seu email: ");
 	}
 

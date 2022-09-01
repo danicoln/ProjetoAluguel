@@ -14,6 +14,11 @@ public class VeiculoService {
 
 	public VeiculoService(Scanner sc) {
 		this.sc = sc;
+		repository.salvar(new Veiculo("i30", "Hyundai", "prata", "ASD1598", "carro", 135));
+		repository.salvar(new Veiculo("A200", "Mercedes", "prata", "QWE4526", "carro", 1200));
+		repository.salvar(new Veiculo("F450 Italia", "Ferrari", "Vermelho", "TER1568", "carro", 15000));
+		repository.salvar(new Veiculo("Porsche Carrera", "Porsche", "amarelo", "BVC5148", "carro", 14000));
+		repository.salvar(new Veiculo("Fusca Turbo", "Volkswagen", "branco", "BUS1665", "carro", 18000));
 	}
 
 	public void cadastrarVeiculo() {
@@ -35,7 +40,7 @@ public class VeiculoService {
 		System.out.println("Digite o valor de locação do veiculo: ");
 		double valor = sc.nextDouble();
 
-		Veiculo veiculo = new Veiculo(modelo, marca, cor, placa, valor, tipo);
+		Veiculo veiculo = new Veiculo(modelo, marca, cor, placa, tipo, valor);
 
 		this.repository.salvar(veiculo);
 
@@ -63,4 +68,10 @@ public class VeiculoService {
 		return veiculo;
 	}
 
+	public Veiculo devolverVeiculo(int id) {
+		Veiculo veiculo = this.repository.buscarPorId(id);
+		veiculo.setStatus(Status.LIVRE);
+		this.repository.salvar(veiculo);
+		return veiculo;
+	}
 }

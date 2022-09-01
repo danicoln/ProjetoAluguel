@@ -15,6 +15,7 @@ public class ClienteService {
 
 	public ClienteService(Scanner sc) {
 		this.sc = sc;
+		this.repository.salvar(new Cliente("Lincoln", "daniel@hot.com.br", "São Paulo", "1234"));
 	}
 	
 	/*Metodo que confere se o email existe*/
@@ -56,4 +57,18 @@ public class ClienteService {
 		this.repository.salvar(cliente);
 	}
 	
+	public void buscarVeiculosAlugados(Cliente cliente) {
+		List<Veiculo> veiculosAlugados = cliente.getVeiculos();
+		for (Veiculo veiculo : veiculosAlugados) {
+			System.out.println(veiculo);
+		}
+	}
+	
+	public void removerVeiculo(Cliente clienteParam, Veiculo veiculoParam) {
+		Cliente cliente = this.repository.buscarPorId(clienteParam.getId());
+		
+		cliente.getVeiculos().remove(veiculoParam);
+		
+		this.repository.salvar(cliente);
+	}
 }

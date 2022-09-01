@@ -1,5 +1,7 @@
 package br.com.alfamidia.model;
 
+import br.com.alfamidia.util.Contador;
+
 public class Veiculo {
 
 	
@@ -12,15 +14,15 @@ public class Veiculo {
 	private Tipo tipo;
 	private Status status;
 	
-	public Veiculo(String modelo, String marca, String cor, String placa, double valorLocacao, String tipo) {
+	public Veiculo(String modelo, String marca, String cor, String placa, String tipo, double valorLocacao) {
 		this.id = Contador.proximoId();
 		
 		this.modelo = modelo;
 		this.marca = marca;
 		this.cor = cor;
 		this.placa = placa;
-		this.valorLocacao = valorLocacao;
 		this.tipo = Tipo.valueOf(tipo.toUpperCase()); // converte String no Enum.
+		this.valorLocacao = valorLocacao;
 		this.status = Status.LIVRE;
 	}
 

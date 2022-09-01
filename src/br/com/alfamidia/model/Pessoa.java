@@ -1,5 +1,7 @@
 package br.com.alfamidia.model;
 
+import br.com.alfamidia.util.Contador;
+
 public abstract class Pessoa {
 	
 	private Integer id;

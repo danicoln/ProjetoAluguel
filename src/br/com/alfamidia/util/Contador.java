@@ -1,4 +1,4 @@
-package br.com.alfamidia.model;
+package br.com.alfamidia.util;
 
 public class Contador {
 
