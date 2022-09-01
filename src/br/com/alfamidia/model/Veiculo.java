@@ -88,7 +88,9 @@ public class Veiculo {
 		this.status = status;
 	}
 
-	
+	public String toString() {
+		return this.id + " - " + this.modelo + " - " + this.marca + " - "+ this.cor + " - " + " || " +  this.valorLocacao;
+	}
 
 
 }

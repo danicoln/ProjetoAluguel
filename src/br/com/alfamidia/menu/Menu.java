@@ -13,24 +13,22 @@ public class Menu {
 	}
 
 	public static void menuCliente() {
+		System.out.println("Digite seu email: ");
+	}
+
+	public static void menuCliente2() {
 		System.out.println("Digite a opção desejada: ");
 		System.out.println("1 - Alugar um veiculo");
 		System.out.println("2 - Devolver um veiculo");
 	}
 
-
-	public static void menuCliente2() {
-		System.out.println("Você já tem cadastro? Digite seu email: ");
-		System.out.println("Digite 2 se vc não tem cadastro");
-	}
-	
 	public static void menuVendedor() {
 		System.out.println("Digite a opção desejada: ");
 		System.out.println("1 - Ver os veiculos que você alugou");
 		System.out.println("2 - Ver seu salário");
 		System.out.println("3 - Ver seu salário com a comissão atual");
 	}
-	
+
 	public static void menuAdministrador() {
 		System.out.println("Digite a opção desejada: ");
 		System.out.println("1 - Cadastrar veículo");
@@ -39,5 +37,5 @@ public class Menu {
 		System.out.println("4 - Remover vendedor");
 
 	}
-	
+
 }
