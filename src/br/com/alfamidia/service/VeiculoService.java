@@ -3,6 +3,8 @@ package br.com.alfamidia.service;
 import java.util.List;
 import java.util.Scanner;
 
+import br.com.alfamidia.exception.SistemaException;
+import br.com.alfamidia.model.Cliente;
 import br.com.alfamidia.model.Status;
 import br.com.alfamidia.model.Veiculo;
 import br.com.alfamidia.repository.VeiculoRepository;
@@ -57,10 +59,13 @@ public class VeiculoService {
 		}
 	}
 
-	public Veiculo alugarVeiculoPorId(int id) {
+	public Veiculo alugarVeiculoPorId(int id) throws SistemaException {
 
 		Veiculo veiculo = this.repository.buscarPorId(id);
 
+		if (veiculo == null) {
+			throw new SistemaException("Veículo não encontrado");
+		}
 		veiculo.setStatus(Status.ALUGADO);
 
 		this.repository.salvar(veiculo);
@@ -68,8 +73,16 @@ public class VeiculoService {
 		return veiculo;
 	}
 
-	public Veiculo devolverVeiculo(int id) {
+	public Veiculo devolverVeiculo(Cliente cliente, int id) throws SistemaException {
 		Veiculo veiculo = this.repository.buscarPorId(id);
+		if (veiculo == null) {
+			throw new SistemaException("Veículo não encontrado");
+		}
+		// verifica se o cliente contem o veiculo
+		if (!cliente.getVeiculos().contains(veiculo)) {
+			throw new SistemaException("Você não possui este veículo!");
+		}
+
 		veiculo.setStatus(Status.LIVRE);
 		this.repository.salvar(veiculo);
 		return veiculo;

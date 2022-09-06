@@ -3,9 +3,11 @@ package br.com.alfamidia.service;
 import java.util.List;
 import java.util.Scanner;
 
+import br.com.alfamidia.exception.SistemaException;
 import br.com.alfamidia.model.Cliente;
 import br.com.alfamidia.model.Veiculo;
 import br.com.alfamidia.repository.ClienteRepository;
+import br.com.alfamidia.util.Normaliza;
 
 public class ClienteService {
 
@@ -22,19 +24,17 @@ public class ClienteService {
 	public Cliente confereEmail(String email) {
 		List<Cliente> clientesCadastrados = repository.buscarTodos();
 		for (Cliente cliente : clientesCadastrados) {
-			if(cliente.getEmail().equals(email)) {
+			if(cliente.getEmail().equals(Normaliza.normalizaEmail(email))) {
 				return cliente;
 			}
 		}
-		return this.cadastrarCliente();
+		return this.cadastrarCliente(email);
 	}
 
 	/* Metodo que cadastra o cliente */
-	private Cliente cadastrarCliente() {
+	private Cliente cadastrarCliente(String email) {
 		System.out.println("Digite seu nome: ");
 		String name = sc.nextLine();
-		System.out.println("Digite seu email: ");
-		String email = sc.nextLine();
 		System.out.println("Digite sua cidade: ");
 		String city = sc.nextLine();
 		System.out.println("Digite uma senha: ");
@@ -47,8 +47,11 @@ public class ClienteService {
 	}
 	
 	/* Metodo que confere a senha */
-	public boolean conferirSenha(Cliente client, String senha) {
+	public boolean conferirSenha(Cliente client, String senha) throws SistemaException {
 		Cliente cliente = repository.buscarPorId(client.getId());
+		if(cliente == null) {
+			throw new SistemaException("Cliente não encontrado");
+		}
 		return cliente.getSenha().equals(senha);
 	}
 	
@@ -64,8 +67,11 @@ public class ClienteService {
 		}
 	}
 	
-	public void removerVeiculo(Cliente clienteParam, Veiculo veiculoParam) {
+	public void removerVeiculo(Cliente clienteParam, Veiculo veiculoParam) throws SistemaException {
 		Cliente cliente = this.repository.buscarPorId(clienteParam.getId());
+		if(cliente == null) {
+			throw new SistemaException("Cliente não encontrado");
+		}
 		
 		cliente.getVeiculos().remove(veiculoParam);
 		
